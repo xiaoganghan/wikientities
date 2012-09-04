@@ -73,6 +73,9 @@ public class ExampleWikiLinkCount
    *
    * @author Manu Sporny 
    * @author Steve Salevan
+   *
+   * modified by:
+   * @author Changjiu
    */
   public static class ExampleArcMicroformatMapper
       extends    MapReduceBase
@@ -109,16 +112,26 @@ public class ExampleWikiLinkCount
         }
 
         //Elements mf = doc.select("[itemtype~=schema.org]");
+	
+	//skip the wikipedia page
+		
+	Elements ls = doc.select("title");
+        for (Element l : ls) {
+        	
+       	    if (l.text().contains("Wikipedia")) {
+		reporter.incrCounter(this._counterGroup, "Skipped - Wikipedia page", 1);
+            	return;
+             }
+        }
+	
+	
         Elements mf = doc.select("a[abs:href*=wikipedia.org]");
+	
         
         if (mf.size() > 0) {
           for (Element e : mf) {
-            /*if (e.hasAttr("itemtype")) {
-              output.collect(new Text(e.attr("itemtype").toLowerCase().trim()), new LongWritable(1));
-            }
-            */
-        	  String k = e.text() +"|" +e.attr("abs:href");
-        	  output.collect(new Text(k.toLowerCase().trim()), new LongWritable(1));
+              String k = e.text() +"|" +e.attr("abs:href");
+              output.collect(new Text(k.toLowerCase().trim()), new LongWritable(1));
           }
         }
       }
@@ -187,7 +200,7 @@ public class ExampleWikiLinkCount
     //String inputPath   = "s3n://aws-publicdatasets/common-crawl/parse-output/segment/1341690163490/1341782443295_1551.arc.gz";
  
     // Switch to this if you'd like to look at all ARC files.  May take many minutes just to read the file listing.
-    String inputPath   = "s3n://aws-publicdatasets/common-crawl/parse-output/segment/*/1*.arc.gz";
+    String inputPath   = "s3n://aws-publicdatasets/common-crawl/parse-output/segment/1341690147253/*.arc.gz";
 
     // Read in any additional config parameters.
     if (configFile != null) {
