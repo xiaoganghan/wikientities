@@ -17,7 +17,7 @@ With the dataset built on CommonCrawl data, we want to investigate deeper into t
 * With regards to linking accuracy and richness, which corpus is better, Google's or CommonCrawl's?
 * For entity linking tasks, will the combination of both corpus boost the performance compared with the usage of each dataset individually?
 
-If you find our work interesting, please vote [our entry on CommonCrawl Contest Website](https://iframe.wizehive.com/voting/view/4f6cd92e-abe0-4178-a52c-4e0b0a22228d/4608/749105/0) and stay tuned for our release of the dataset.
+If you find our work interesting, please vote [our entry on CommonCrawl Contest Website](https://iframe.wizehive.com/voting/view/4f6cd92e-abe0-4178-a52c-4e0b0a22228d/4608/751297/0) and stay tuned for our release of the dataset.
 
 Code: https://github.com/chrishan/wikientities
 
